@@ -1,0 +1,7 @@
+All list tiles are meant to be here but i decided to leave it in the widgets of their folder
+
+
+ eg:
+ lib/src/features/personalization/screen/profile/widgets/user_profile_tile.dart
+
+ lib/src/features/personalization/screen/settings/widget/settings_menu_tile.dart
