@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_app/src/common/widgets/images/dan_circular_image.dart';
 import 'package:e_commerce_app/src/utils/contants/colors.dart';
+import 'package:e_commerce_app/src/utils/contants/image_strings.dart';
 import 'package:e_commerce_app/src/utils/contants/sizes.dart';
 import 'package:e_commerce_app/src/utils/helpers/helper_functions.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class danVerticalImageText extends StatelessWidget {
@@ -25,20 +28,29 @@ class danVerticalImageText extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.only(right: danSizes.spacebtwItems),
+         padding: const EdgeInsets.only(right: danSizes.spacebtwItems),
         child: Column(
           children: [
-            danCircularImage(
-              image: image,
-              fit: BoxFit.fitWidth,
-              padding: danSizes.sm * 1.4,
-              isNetworkImage: isNetworkImage,
-              backgroundcolor: backgroundColor,
-              overlayColor: danHelperFunction.isDarkMode(context)
-                  ? danColors.white
-                  : danColors.dark,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(100),
+              child: CachedNetworkImage(
+                imageUrl: image,
+                fit: BoxFit.fitWidth,
+                width: 56,
+                height: 56,
+              ),
             ),
-            Text(title, style: Theme.of(context).textTheme.bodyMedium,),
+            // danCircularImage(
+            //   image: image,
+            //   // fit: BoxFit.fitWidth,
+            //   // padding: danSizes.sm * 1.4,
+            //   isNetworkImage: isNetworkImage,
+            //   backgroundcolor: backgroundColor,
+            //   overlayColor: danHelperFunction.isDarkMode(context)
+            //       ? danColors.white
+            //       : danColors.dark,
+            // ),
+            Text(title, style: Theme.of(context).textTheme.bodyMedium, overflow: TextOverflow.ellipsis, maxLines: 1,),
           ],
         ),
       ),

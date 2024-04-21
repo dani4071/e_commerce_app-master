@@ -1,6 +1,8 @@
 import 'package:e_commerce_app/src/common/widgets/loaders/snackbar.dart';
 import 'package:e_commerce_app/src/data/repositories.authentication/category/category_repository.dart';
+import 'package:e_commerce_app/src/data/repositories.authentication/product/product_repository.dart';
 import 'package:e_commerce_app/src/features/shop/model/category_model.dart';
+import 'package:e_commerce_app/src/features/shop/model/product_model.dart';
 import 'package:get/get.dart';
 
 
@@ -42,4 +44,33 @@ class CategoryController extends GetxController{
       isLoading.value = false;
     }
   }
+
+  /// load selected category data
+  Future<List<CategoryModel>> getSubCategories(String categoryId) async {
+    try {
+      final subcategories = await _categoryRepository.getSubCategories(categoryId);
+      return subcategories;
+    } catch (e) {
+      danLoaders.errorSnackBar(title: "Oh damn", message: e.toString());
+      return [];
+    }
+
+  }
+
+
+  /// Get category or sub-category products
+Future<List<ProductModel>> getCategoryProducts({required String categoryId, int limit = 4}) async {
+    try {
+      // fetch limited (4) products each category
+      final products = await ProductRepository.instance.getProductsForCategory(
+          categoryId: categoryId, limit: limit);
+      return products;
+    } catch (e) {
+      danLoaders.errorSnackBar(
+          title: "Ohps something went wrong", message: e.toString());
+      return [];
+    }
+  }
 }
+
+

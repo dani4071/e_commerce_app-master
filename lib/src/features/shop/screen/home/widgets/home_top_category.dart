@@ -20,8 +20,7 @@ class popularCategories extends StatelessWidget {
         return Center(
           child: Text(
             "No Data Found",
-            style: Theme
-                .of(context)
+            style: Theme.of(context)
                 .textTheme
                 .bodyMedium!
                 .apply(color: Colors.white),
@@ -32,15 +31,14 @@ class popularCategories extends StatelessWidget {
       return SizedBox(
           height: 80,
           child: ListView.builder(
-            // itemCount: 9,
+              // itemCount: 9,
               itemCount: categoryController.popularCategories.length,
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
 
               /// you can use dan vertical image text to archive the below
               itemBuilder: (context, index) {
-                final category = categoryController
-                    .popularCategories[index];
+                final category = categoryController.popularCategories[index];
 
                 // return SizedBox(
                 //   width: 60,
@@ -61,9 +59,16 @@ class popularCategories extends StatelessWidget {
                 //     ],
                 //   ),
                 // );
-                return danVerticalImageText(image: category.image,isNetworkImage: true,
+
+                // we pass the category in here
+                return danVerticalImageText(
+                  image: category.image,
+                  isNetworkImage: true,
                   title: category.name,
-                  onTap: () => Get.to(const subCategoryScreen()),);
+                  onTap: () => Get.to(subCategoryScreen(
+                    category: category,
+                  )),
+                );
               }));
     });
   }

@@ -16,23 +16,112 @@ class ProductRepository extends GetxController {
   /// Get limited featured products
   Future<List<ProductModel>> getFeaturedProducts() async {
     try {
-      final snapshot = await _db.collection('Products').where('isFeatured', isEqualTo: true).limit(4).get();
-      final list = snapshot.docs.map((document) => ProductModel.fromSnapShot(document)).toList();
+      final snapshot = await _db.collection('Products').where(
+          'isFeatured', isEqualTo: true).limit(4).get();
+      final list = snapshot.docs.map((document) =>
+          ProductModel.fromSnapShot(document)).toList();
       return list;
-      // return snapshot.docs.map((documentSnapshot) => ProductModel.fromSnapShot(documentSnapshot)).toList();
+    } on FirebaseException catch (e) {
+      throw danException(e.code).message;
+    } on PlatformException catch (e) {
+      throw danException(e.code).message;
+    }
+    catch (e) {
+      throw 'Something Weeent Wrong. $e';
+    }
+  }
+
+  /// get limited featured products
+  Future<List<ProductModel>> getAllFeaturedProducts() async {
+    try {
+      final snapshot = await _db.collection('Products').where(
+          'isFeatured', isEqualTo: true).get();
+      final list = snapshot.docs.map((document) =>
+          ProductModel.fromSnapShot(document)).toList();
+      return list;
+    } on FirebaseException catch (e) {
+      throw danException(e.code).message;
+    } on PlatformException catch (e) {
+      throw danException(e.code).message;
+    }
+    catch (e) {
+      throw 'Something Weeent Wrong. $e';
+    }
+  }
+
+  /// Get products based on the brand
+  Future<List<ProductModel>> fetchProductsByQuery(Query query) async {
+    try {
+      final querySnapshot = await query.get();
+      final List<ProductModel> productList = querySnapshot.docs.map((doc) =>
+          ProductModel.fromQuerySnapshot(doc)).toList();
+      return productList;
+    } on FirebaseException catch (e) {
+      throw danException(e.code).message;
+    } on PlatformException catch (e) {
+      throw danException(e.code).message;
+    }
+    catch (e) {
+      throw 'Something Weeent Wrong. $e';
+    }
+  }
+
+  /// Get products based on the brand
+  Future<List<ProductModel>> getFavouriteProducts(List<String> productIds) async {
+    try {
+      final snapshot = await _db.collection('Products').where(FieldPath.documentId, whereIn: productIds).get();
+      return snapshot.docs.map((snapshot) => ProductModel.fromSnapShot(snapshot)).toList();
+    } on FirebaseException catch (e) {
+      throw danException(e.code).message;
+    } on PlatformException catch (e) {
+      throw danException(e.code).message;
+    }
+    catch (e) {
+      throw 'Something Weeent Wrong. $e';
+    }
+  }
 
 
-      //     final snapShot = await _db.collection("Categories").get();
-      //  final list = snapShot.docs.map((document) => CategoryModel.fromSnapShot(document)).toList();
-      //       return list;
+  Future<List<ProductModel>> getProductsForBrand(
+      {required String brandId, int limit = -1}) async {
+    try {
+      final querysnapshot = limit == -1
+          ? await _db.collection("Products").where("Brand.Id", isEqualTo: brandId).get()
+          : await _db.collection("Products").where("Brand.Id", isEqualTo: brandId).limit(limit).get();
+
+      final products = querysnapshot.docs.map((doc) => ProductModel.fromSnapShot(doc)).toList();
+
+      return products;
+    } on FirebaseException catch (e) {
+      throw danException(e.code).message;
+    } on PlatformException catch (e) {
+      throw danException(e.code).message;
+    }
+    catch (e) {
+      throw 'Something Weeent Wrong. $e';
+    }
+  }
 
 
-      //
-      //final result = await _db.collection('Banners').where('Active', isEqualTo: true).get();
-      //this docs makes it return the results one by one till theres nothing else. CHECk out -- video 41 (10:45) --
-     // return result.docs.map((documentSnapshot) => BannerModel.fromSnapshot(documentSnapshot)).toList();
+  Future<List<ProductModel>> getProductsForCategory(
+      {required String categoryId, int limit = 4}) async {
+    try {
+      // Query to get all documents where productId matches the provided categoryId and Fetch limited or unlimited based on limit
+      QuerySnapshot productCategoryQuery = limit == -1
+          ? await _db.collection("ProductCategory").where("categoryId", isEqualTo: categoryId).get()
+          : await _db.collection("ProductCategory").where("categoryId", isEqualTo: categoryId).limit(limit).get();
 
+      // Extract products from the documents
+      List<String> productIds = productCategoryQuery.docs.map((doc) => doc['productId'] as String).toList();
 
+      // Query to get all documents where the brandId/categoryId is in the list of brandIds/categoryId, fieldPath.documentId to get query documents in collection
+      /// this document id field path is being compared to the product id it received -- video 47 --10:10
+      final productsQuery = await _db.collection("Products").where(FieldPath.documentId, whereIn: productIds).get();
+
+      // Extract brand names or other relevant data from the documents
+      List<ProductModel> products = productsQuery.docs.map((doc) => ProductModel.fromSnapShot(doc)).toList();
+
+      return products;
     } on FirebaseException catch (e) {
       throw danException(e.code).message;
     } on PlatformException catch (e) {
@@ -45,9 +134,9 @@ class ProductRepository extends GetxController {
 
 
 
+
 // video 42 at 21:04
 /// Upload dummy data to the cloud firestore
-
 
 
 }

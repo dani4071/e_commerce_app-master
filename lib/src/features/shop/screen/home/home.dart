@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce_app/src/common/widgets/shimmer_annimation_loading/vertical_product_shimmer.dart';
 import 'package:e_commerce_app/src/features/shop/controller/product/product_controller.dart';
 import 'package:e_commerce_app/src/features/shop/screen/all_products/all_product_screen.dart';
 import 'package:e_commerce_app/src/features/shop/screen/home/widgets/home_app_bar.dart';
 import 'package:e_commerce_app/src/features/shop/screen/home/widgets/home_promo_slider.dart';
+import 'package:e_commerce_app/src/features/shop/screen/home/widgets/home_top_category.dart';
 import 'package:e_commerce_app/src/utils/contants/sizes.dart';
 import 'package:e_commerce_app/src/utils/contants/text_strings.dart';
 import 'package:e_commerce_app/src/utils/helpers/helper_functions.dart';
@@ -43,8 +45,10 @@ class homeScreen extends StatelessWidget {
                     children: [
                       danSectionHeading(
                           title: "Popular Brands", texttheme: texttheme),
-                      const SizedBox(height: danSizes.spacebtwItems / 2,),
-                     // const popularCategories(),
+                      const SizedBox(
+                        height: danSizes.spacebtwItems / 2,
+                      ),
+                      const popularCategories(),
                     ],
                   ),
                   const SizedBox(
@@ -53,35 +57,45 @@ class homeScreen extends StatelessWidget {
                 ],
               ),
             ),
-
-
             const danPromoSlider(),
-
-
             const SizedBox(
               height: danSizes.spacebtwItems,
             ),
-
             danSectionHeading(
               texttheme: texttheme,
               title: "Popular Products",
               title2: "view all",
               showbutton: true,
-              onPressed: () => Get.to(const allProductsScreen()),
+              onPressed: () => Get.to(allProductsScreen(
+                title: 'Popular Product',
+                query: FirebaseFirestore.instance
+                    .collection("Products")
+                    .where("isFeatured", isEqualTo: true)
+                    .limit(6),
+                futureMethod: controller.fetchAllFeaturedProducts(),
+              ),
+              ),
             ),
-
-
             Obx(() {
-              
-              if(controller.isLoading.value) return const danVerticalProductShimmer();
+              if (controller.isLoading.value) {
+                return const danVerticalProductShimmer();
+              }
 
-              if(controller.featuredProducts.isEmpty) {return Center(child: Text("No Data Found!", style: texttheme.bodyMedium,),);}
-              
+              if (controller.featuredProducts.isEmpty) {
+                return Center(
+                  child: Text(
+                    "No Data Found!",
+                    style: texttheme.bodyMedium,
+                  ),
+                );
+              }
+
               return danGridLayout(
-                  itemBuilder: (_, index) => danProductCardVertical(product: controller.featuredProducts[index],),
+                  itemBuilder: (_, index) => danProductCardVertical(
+                        product: controller.featuredProducts[index],
+                      ),
                   itemCount: controller.featuredProducts.length);
-            } 
-            )
+            })
           ],
         ),
       ),

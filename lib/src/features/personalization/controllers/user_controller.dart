@@ -27,6 +27,8 @@ class UserController extends GetxController {
   final Rx<bool> hidePassword = true.obs;
   GlobalKey<FormState> reAuthFormKey = GlobalKey<FormState>();
 
+  final imageUploading = false.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -165,20 +167,27 @@ class UserController extends GetxController {
 
   uploadUserProfilePicture() async {
     try {
-      final image = await ImagePicker().pickImage(source: ImageSource.camera, imageQuality: 70, maxHeight: 512, maxWidth: 512);
+      // could be ImageSource. camera too;
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 70, maxHeight: 512, maxWidth: 512);
       if(image != null){
-        final imageUrl = await userRepository.uploadImage("Users/Images/Profile/", image);
+        imageUploading.value = true;
+        //upload image
+        final imageUrl = await userRepository.uploadImage('Users/Images/Profile/', image);
 
         // update User Image record
         Map<String, dynamic> json = {'ProfilePicture': imageUrl};
         await userRepository.updateSingleField(json);
 
         user.value.profilePicture = imageUrl;
+        user.refresh();
         danLoaders.successSnackBar(title: "Congratulations", message: "Your profile image has been uploaded");
 
       }
     } catch (e) {
       danLoaders.errorSnackBar(title: "oh Snap!!", message: "Something went Wrong: $e");
+    }
+    finally {
+      imageUploading.value = false;
     }
 
   }

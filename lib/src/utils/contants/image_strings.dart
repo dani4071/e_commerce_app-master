@@ -25,4 +25,8 @@ class danImage {
   static const String loadingImage1 = "assets/loading_images/loading1.gif";
   static const String loadingImage2 = "assets/loading_images/loading2.gif";
 
+
+  static const String pencilAnimation = "assets/images/pencilAnimation.json";
+
+
 }

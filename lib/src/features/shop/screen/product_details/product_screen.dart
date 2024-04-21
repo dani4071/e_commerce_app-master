@@ -8,7 +8,6 @@ import 'package:e_commerce_app/src/features/shop/screen/product_details/widgets/
 import 'package:e_commerce_app/src/features/shop/screen/review/review_screen.dart';
 import 'package:e_commerce_app/src/utils/contants/enums.dart';
 import 'package:e_commerce_app/src/utils/contants/sizes.dart';
-import 'package:e_commerce_app/src/utils/contants/text_strings.dart';
 import 'package:e_commerce_app/src/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -86,9 +85,9 @@ class productScreen extends StatelessWidget {
                     trimCollapsedText: "Show more",
                     trimExpandedText: "Show Less",
                     moreStyle:
-                        TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                        const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                     lessStyle:
-                        TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                        const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(
                     height: danSizes.spacebtwItems,

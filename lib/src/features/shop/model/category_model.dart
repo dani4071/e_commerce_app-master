@@ -19,7 +19,8 @@ class CategoryModel {
       id: "", image: "", name: "", isFeatured: false, parentId: "");
 
   /// convert model to json struture so that you can store data in firebase
-  Map<String, dynamic> toJson() {return {
+  Map<String, dynamic> toJson() {
+    return {
       "Name": name,
       "Image": image,
       "ParentID": parentId,

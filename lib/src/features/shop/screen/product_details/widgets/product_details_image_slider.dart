@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce_app/src/common/widgets/products/favourite_icon/favourite_icon.dart';
 import 'package:e_commerce_app/src/features/shop/controller/product/images_controller.dart';
 import 'package:e_commerce_app/src/features/shop/model/product_model.dart';
 import 'package:e_commerce_app/src/utils/contants/colors.dart';
@@ -6,7 +7,6 @@ import 'package:e_commerce_app/src/utils/contants/sizes.dart';
 import 'package:e_commerce_app/src/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import '../../../../../common/custom_shapes/curved_edges/curved_edges_widget.dart';
 import '../../../../../common/widgets/appbar_tabbar/appbar.dart';
 import '../../../../../common/widgets/images/dan_rounded_images.dart';
@@ -55,13 +55,10 @@ class productDetailsImageSlider extends StatelessWidget {
             ),
           ),
 
-          const danAppBar(
+          danAppBar(
             showBackArrow: true,
             actions: [
-              Icon(
-                Iconsax.heart5,
-                color: Colors.red,
-              )
+              danFavouriteIcon(productId: product.id,),
             ],
           ),
 

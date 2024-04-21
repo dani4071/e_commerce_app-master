@@ -1,5 +1,5 @@
+import 'package:e_commerce_app/src/features/shop/model/brand_model.dart';
 import 'package:e_commerce_app/src/utils/contants/enums.dart';
-import 'package:e_commerce_app/src/utils/contants/image_strings.dart';
 import 'package:e_commerce_app/src/utils/contants/sizes.dart';
 import 'package:e_commerce_app/src/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
@@ -12,9 +12,10 @@ class danBrandCard extends StatelessWidget {
   const danBrandCard({
     super.key,
     required this.showBorder,
-    this.onPressed,
+    this.onPressed, required this.brand,
   });
 
+  final BrandModel brand;
   final bool showBorder;
   final void Function()? onPressed;
 
@@ -34,10 +35,10 @@ class danBrandCard extends StatelessWidget {
         backgroundcolor: Colors.transparent,
         child: Row(
           children: [
-            const Flexible(
+            Flexible(
               child: danCircularImage(
-                isNetworkImage: false,
-                image: danImage.facebook,
+                isNetworkImage: true,
+                image: brand.image,
                 backgroundcolor: Colors.transparent,
                 // overlayColor: isDark ? danColors.white : danColors.dark,
               ),
@@ -47,12 +48,12 @@ class danBrandCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const danBrandTitleTextWithVerifiedIcon(
-                    title: "Nike",
+                  danBrandTitleTextWithVerifiedIcon(
+                    title: brand.name,
                     brandTextSizes: TextSizes.large,
                   ),
                   Text(
-                    "256 Products",
+                    '${brand.productsCount ?? 0} productsss',
                     overflow: TextOverflow.ellipsis,
                     style: texttheme.labelMedium,
                   ),

@@ -29,17 +29,21 @@ class ProductController extends GetxController{
       //assign product
       featuredProducts.assignAll(products);
 
-
-
-
-
-
-
-
     } catch (e) {
       danLoaders.errorSnackBar(title: "oh Snappp", message: e.toString());
     } finally {
       isLoading.value = false;
+    }
+  }
+
+  Future<List<ProductModel>> fetchAllFeaturedProducts() async {
+    try {
+      //fetch product
+      final products = await productRepository.getAllFeaturedProducts();
+      return products;
+    } catch (e) {
+      danLoaders.errorSnackBar(title: "oh Snappp", message: e.toString());
+      return [];
     }
   }
 

@@ -3,6 +3,7 @@ import 'package:e_commerce_app/src/data/repositories.authentication/user/user_re
 import 'package:e_commerce_app/src/features/shop/screen/login/login.dart';
 import 'package:e_commerce_app/src/features/shop/screen/onboarding/onboarding.dart';
 import 'package:e_commerce_app/src/features/shop/screen/sign_up/verify_email.dart';
+import 'package:e_commerce_app/src/utils/local_storage/storage_utility.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -28,6 +29,7 @@ class AuthenticationRepository extends GetxController {
   @override
   void onReady() {
     FlutterNativeSplash.remove();
+    // redirect to the appropriate screen
     screenRedirect();
   }
 
@@ -39,6 +41,11 @@ class AuthenticationRepository extends GetxController {
       // if the user is logged in
       if (user.emailVerified) {
         //if the users email is verified, navigate to thr navigation menu
+
+        // Initialize user specific storage
+        await danLocalStorage.init(user.uid);
+
+        // if the users email is verified, navigate to the verifyEmailScreen
         Get.offAll(() => const navigationMenu());
       } else {
         //if the users email is not verified, navigate to thr verify screen

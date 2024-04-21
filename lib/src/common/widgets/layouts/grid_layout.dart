@@ -27,8 +27,8 @@ class danGridLayout extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          // mainAxisExtent: screenHeight * mainAxisExtent!,
-          mainAxisExtent: screenHeight / 2.7,
+          mainAxisExtent: screenHeight * mainAxisExtent!,
+          // mainAxisExtent: screenHeight / 2.7,
           mainAxisSpacing: danSizes.gridViewSpacing,
           crossAxisSpacing: danSizes.gridViewSpacing,
         ),

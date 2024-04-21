@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/src/common/custom_shapes/containers/circular_container.dart';
 import 'package:e_commerce_app/src/common/styles/shadows.dart';
+import 'package:e_commerce_app/src/common/widgets/products/favourite_icon/favourite_icon.dart';
 import 'package:e_commerce_app/src/common/widgets/texts/brand_title_text_and_verified_icon.dart';
 import 'package:e_commerce_app/src/common/widgets/texts/product_price_text.dart';
 import 'package:e_commerce_app/src/features/shop/controller/product/product_controller.dart';
@@ -11,7 +12,6 @@ import 'package:e_commerce_app/src/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../features/shop/model/product_model.dart';
-import '../../icons/dan_circular_icon.dart';
 import '../../images/dan_rounded_images.dart';
 import '../../texts/product_title_text.dart';
 
@@ -57,6 +57,10 @@ class danProductCardVertical extends StatelessWidget {
                       isNetworkImage: true,
                     ),
                   ),
+
+                  // sale tag
+                  if(salePercentage != null)
+
                   Positioned(
                     top: 10,
                     left: 5,
@@ -78,13 +82,10 @@ class danProductCardVertical extends StatelessWidget {
                       )),
                     ),
                   ),
-                  const Positioned(
+                  Positioned(
                       right: 0,
                       top: 0,
-                      child: danCircularIcon(
-                        iconn: Icons.favorite,
-                        color: Colors.red,
-                      )),
+                      child: danFavouriteIcon(productId: product.id,)),
                 ],
               ),
             ),

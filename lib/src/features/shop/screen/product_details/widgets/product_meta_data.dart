@@ -49,7 +49,7 @@ class productMetaData extends StatelessWidget {
             if(product.productType == ProductType.single.toString() && product.salePrice > 0)
             Text("${product.price}", style: texttheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),),
 
-            if(product.productType == ProductType.single.toString() && product.salePrice > 0 )SizedBox(
+            if(product.productType == ProductType.single.toString() && product.salePrice > 0 )const SizedBox(
               width: danSizes.spacebtwItems,
             ),
 

@@ -9,7 +9,8 @@ import '../shimmer_annimation_loading/shimmer_effect.dart';
 class danCircularImage extends StatelessWidget {
   const danCircularImage({
     super.key,
-    this.padding = danSizes.sm,
+    // this.padding = danSizes.sm,
+    this.padding = 0,
     this.backgroundcolor,
     this.overlayColor,
     this.fit = BoxFit.cover,
@@ -40,21 +41,24 @@ class danCircularImage extends StatelessWidget {
         color: backgroundcolor ?? (isDark ? danColors.dark : danColors.white),
         borderRadius: BorderRadius.circular(100),
       ),
-      child: Center(
-         // cachedNetworkImage downloads the image and lets us use it again and agian whenever we login/ it'd just be there
-        child: isNetworkImage
-            ? CachedNetworkImage(
-                imageUrl: image,
-                fit: fit,
-                color: overlayColor,
-                progressIndicatorBuilder: (context, url, downloadProgress) => const danShimmerEffect(width: 55, height: 55),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-              )
-            : Image(
-                image: AssetImage(image),
-                fit: fit,
-                color: overlayColor,
-              ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(100),
+        child: Center(
+           // cachedNetworkImage downloads the image and lets us use it again and agian whenever we login/ it'd just be there
+          child: isNetworkImage
+              ? CachedNetworkImage(
+                  imageUrl: image,
+                  fit: fit,
+                  color: overlayColor,
+                  progressIndicatorBuilder: (context, url, downloadProgress) => const danShimmerEffect(width: 55, height: 55),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                )
+              : Image(
+                  image: AssetImage(image),
+                  fit: fit,
+                  color: overlayColor,
+                ),
+        ),
       ),
     );
   }

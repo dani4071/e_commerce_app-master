@@ -13,7 +13,7 @@ class danLoaders {
       SnackBar(
         elevation: 0,
         duration: const Duration(seconds: 3),
-        backgroundColor: Colors.yellow,
+        backgroundColor: Colors.transparent,
         content: Container(
           padding: const EdgeInsets.all(12),
           margin: const EdgeInsets.symmetric(horizontal: 30),

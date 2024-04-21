@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce_app/src/data/models/user_model.dart';
 import 'package:e_commerce_app/src/data/repositories.authentication/authentication/authentication_repository.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -100,6 +99,8 @@ class UserRepository extends GetxController {
       throw "Something went wrong. please try again 4:4:4";
     }
   }
+
+
   /// Upload any image
   Future<String> uploadImage(String path, XFile image) async {
     try {
@@ -108,9 +109,6 @@ class UserRepository extends GetxController {
       await ref.putFile(File(image.path));
       final url = await ref.getDownloadURL();
       return url;
-    } on FirebaseAuthException catch (e) {
-      throw danException(e.code).message;
-      // throw "Something went wrong. please try again 1";
     } on FirebaseException catch (e) {
       throw danException(e.code).message;
       // throw "Something went wrong. please try again 2";
@@ -121,7 +119,7 @@ class UserRepository extends GetxController {
       throw danException(e.code).message;
       // throw "Something went wrong. please try again 4";
     } catch (e) {
-      throw "Something went wrong. please try again 5";
+      throw "Something went wrongg. please try again 5";
     }
   }
 }
