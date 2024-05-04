@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce_app/src/data/repositories.authentication/authentication/authentication_repository.dart';
 import 'package:e_commerce_app/src/features/shop/model/address_model.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddressRepository extends GetxController {
@@ -13,7 +12,7 @@ class AddressRepository extends GetxController {
   /// fetch users with thier unique address after they create them
   Future<List<AddressModel>> fetchUserAddress() async {
     try{
-      final userId = AuthenticationRepository.instance.authUser!.uid;
+      final userId = AuthenticationRepository.instance.authUser.uid;
       if(userId.isEmpty) throw "Unable to find user information, try again in few minutes.";
 
       final result = await _db.collection("Users").doc(userId).collection("Addresses").get();
@@ -21,9 +20,24 @@ class AddressRepository extends GetxController {
 
 
     } catch (e){
-      throw "Something went wrong address controller";
+      throw "Something went wrong address repository $e";
     }
   }
+
+  /// fetch users with thier unique address after they create them
+  Future<void> updateSelectedField(String addressId, bool selected) async {
+    try{
+
+      final userId = AuthenticationRepository.instance.authUser.uid;
+      await _db.collection("Users").doc(userId).collection("Addresses").doc(addressId).update({"SelectedAddress": selected});
+
+    } catch (e){
+      throw "Something went wrong address repo";
+    }
+  }
+
+
+
 
 
 
@@ -31,7 +45,7 @@ class AddressRepository extends GetxController {
   /// Store new user order
  Future<String> addAddress(AddressModel address) async {
    try{
-     final userId = AuthenticationRepository.instance.authUser!.uid;
+     final userId = AuthenticationRepository.instance.authUser.uid;
      final currentAddress = await _db.collection("Users").doc(userId).collection("Addresses").add(address.toJson());
      return currentAddress.id;
    } catch (e) {

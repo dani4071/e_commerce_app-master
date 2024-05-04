@@ -56,7 +56,7 @@ class UserController extends GetxController {
       await fetchUserRecord();
 
       // if no record already stored
-      if (user.value.id.isNotEmpty) {
+      if (user.value.id.isEmpty) {
         if (userCredentials != null) {
           // Convert name to first name and last name
           final nameParts =
@@ -118,7 +118,7 @@ class UserController extends GetxController {
 
       // first re-authenticate user
       final auth = AuthenticationRepository.instance;
-      final provider = auth.authUser!.providerData.map((e) => e.providerId).first;
+      final provider = auth.authUser.providerData.map((e) => e.providerId).first;
       if(provider.isNotEmpty){
         if(provider == 'google.com') {
           await auth.signInWithGoogle();
@@ -181,6 +181,8 @@ class UserController extends GetxController {
         user.value.profilePicture = imageUrl;
         user.refresh();
         danLoaders.successSnackBar(title: "Congratulations", message: "Your profile image has been uploaded");
+
+
 
       }
     } catch (e) {

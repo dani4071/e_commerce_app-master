@@ -1,5 +1,7 @@
+import 'package:e_commerce_app/src/features/shop/controller/product/cart_controller.dart';
 import 'package:e_commerce_app/src/utils/contants/sizes.dart';
 import 'package:e_commerce_app/src/utils/helpers/helper_functions.dart';
+import 'package:e_commerce_app/src/utils/helpers/pricing_calculator.dart';
 import 'package:flutter/material.dart';
 
 class danBillingAmountSection extends StatelessWidget {
@@ -10,6 +12,8 @@ class danBillingAmountSection extends StatelessWidget {
 
     final texttheme = Theme.of(context).textTheme;
     final isDark = danHelperFunction.isDarkMode(context);
+    final cartController = CartController.instance;
+    final subTotal = cartController.totalCartPrice.value;
 
     return Column(
       children: [
@@ -17,7 +21,7 @@ class danBillingAmountSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text("Subtotal", style: texttheme.bodyMedium,),
-            Text("\$1126", style: texttheme.bodyMedium,),
+            Text("\$$subTotal", style: texttheme.bodyMedium,),
           ],
         ),
 
@@ -27,7 +31,7 @@ class danBillingAmountSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text("Shipping fee", style: texttheme.bodyMedium,),
-            Text("\$46", style: texttheme.bodyMedium,),
+            Text("\$${danPricingCalculator.calculateShippingCost(subTotal, 'US')}", style: texttheme.bodyMedium,),
           ],
         ),
 
@@ -37,7 +41,7 @@ class danBillingAmountSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text("Tax Fee", style: texttheme.bodyMedium,),
-            Text("\$126", style: texttheme.bodyMedium,),
+            Text("\$${danPricingCalculator.calculateTax(subTotal, 'US')}", style: texttheme.bodyMedium,),
           ],
         ),
 
@@ -47,7 +51,7 @@ class danBillingAmountSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text("Order Total", style: texttheme.bodyMedium,),
-            Text("\$66", style: texttheme.titleLarge,),
+            Text("\$${danPricingCalculator.calculateTotalPrice(subTotal, 'US')}", style: texttheme.titleLarge,),
           ],
         ),
       ],

@@ -52,7 +52,7 @@ class FavouriteController extends GetxController {
 
   void saveFavoritesToStorage() {
   final encodedFavorites = json.encode(favourites);
-  danLocalStorage.instance().saveData("favorites", encodedFavorites);
+  danLocalStorage.instance().writeData("favorites", encodedFavorites);
 
   }
 

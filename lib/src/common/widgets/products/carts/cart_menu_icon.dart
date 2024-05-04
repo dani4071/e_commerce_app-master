@@ -1,5 +1,7 @@
+import 'package:e_commerce_app/src/features/shop/controller/product/cart_controller.dart';
 import 'package:e_commerce_app/src/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:e_commerce_app/src/utils/contants/colors.dart';
 
@@ -19,7 +21,10 @@ class danCounterIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final isDark = danHelperFunction.isDarkMode(context);
+    final controller =  Get.put(CartController());
+
     return Stack(
       children: [
         IconButton(
@@ -37,11 +42,13 @@ class danCounterIcon extends StatelessWidget {
                 color: isDark ? danColors.white : danColors.dark,
                 borderRadius: BorderRadius.circular(100)),
             child: Center(
-                child: Text(
-              '2',
-              style: texttheme.labelLarge!
-                  .apply(color: isDark ? danColors.dark : danColors.white, fontSizeFactor: 0.8),
-            )),
+                child: Obx(
+                  () => Text(
+                    controller.noOfCartItems.value.toString(),
+                    style: texttheme.labelLarge!
+                    .apply(color: isDark ? danColors.dark : danColors.white, fontSizeFactor: 0.8),
+                              ),
+                )),
           ),
         )
       ],

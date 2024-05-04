@@ -36,7 +36,7 @@ class UserRepository extends GetxController {
   Future<UserModel> fetchUserDetails() async {
     try {
       final documentSnapShot = await _db.collection("Users").doc(
-          AuthenticationRepository.instance.authUser?.uid).get();
+          AuthenticationRepository.instance.authUser.uid).get();
       // what the above function returns is called a snapshot
       if (documentSnapShot.exists) {
         return UserModel.fromSnapShot(documentSnapShot);
@@ -73,7 +73,7 @@ class UserRepository extends GetxController {
   /// update any field in specific user collection
   Future<void> updateSingleField(Map<String, dynamic> json) async {
     try{
-      await _db.collection("Users").doc(AuthenticationRepository.instance.authUser?.uid).update(json);
+      await _db.collection("Users").doc(AuthenticationRepository.instance.authUser.uid).update(json);
     } on FirebaseException {
       throw "Something went wrong. please try again 1:1:1";
     } on FormatException catch (_) {
@@ -99,6 +99,7 @@ class UserRepository extends GetxController {
       throw "Something went wrong. please try again 4:4:4";
     }
   }
+
 
 
   /// Upload any image

@@ -49,7 +49,7 @@ class favouriteScreen extends StatelessWidget {
                     animation: danImage.pencilAnimation,
                     showAction: true,
                     actionText: "Let's add some",
-                    onActionPresed: () => Get.off(() => const navigationMenu()),);
+                    onActionPresed:  () => Get.off(() => const navigationMenu()),);
 
                   const loader = danVerticalProductShimmer(itemCount: 6,);
                   final widget = danCloudHelperFunctions.checkMultiRecordState(

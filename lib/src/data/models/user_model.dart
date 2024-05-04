@@ -8,7 +8,7 @@ class UserModel {
   final String username;
   final String email;
   final String phoneNumber;
-  late final String profilePicture;
+  String profilePicture;
 
   UserModel(
       {required this.id,

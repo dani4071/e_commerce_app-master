@@ -26,7 +26,7 @@ class productScreen extends StatelessWidget {
     final texttheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      bottomNavigationBar: const danButtomAddToCart(),
+      bottomNavigationBar:  danButtomAddToCart(product: product,),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -6,7 +6,6 @@ import 'package:e_commerce_app/src/common/widgets/texts/product_price_text.dart'
 import 'package:e_commerce_app/src/common/widgets/texts/product_title_text.dart';
 import 'package:e_commerce_app/src/features/shop/model/product_model.dart';
 import 'package:e_commerce_app/src/utils/contants/colors.dart';
-import 'package:e_commerce_app/src/utils/contants/image_strings.dart';
 import 'package:e_commerce_app/src/utils/contants/sizes.dart';
 import 'package:e_commerce_app/src/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +65,7 @@ class danProductCardHorizontal extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: danSizes.sm, vertical: danSizes.xs),
                     child: Text(
-                      "$salePercentage",
+                      salePercentage,
                       style: Theme.of(context)
                           .textTheme
                           .labelLarge!
@@ -98,7 +97,7 @@ class danProductCardHorizontal extends StatelessWidget {
                         maxline: 2,
                       ),
 
-                      SizedBox(height: danSizes.spacebtwItems / 2,),
+                      const SizedBox(height: danSizes.spacebtwItems / 2,),
 
 
                       // Spacer(),

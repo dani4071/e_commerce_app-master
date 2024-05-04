@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce_app/src/utils/formatters/formatter.dart';
-import 'package:flutter/material.dart';
 
 class AddressModel {
   String id;
@@ -11,7 +10,7 @@ class AddressModel {
   final String state;
   final String postalCode;
   final String country;
-  final DateTime? dateTime;
+  // final DateTime? dateTime;
   bool selectedAddress;
 
   AddressModel({
@@ -23,7 +22,7 @@ class AddressModel {
     required this.state,
     required this.postalCode,
     required this.country,
-    this.dateTime,
+    // this.dateTime,
     this.selectedAddress = true,
   });
 
@@ -52,7 +51,7 @@ class AddressModel {
       "State": state,
       "PostalCode": postalCode,
       "Country": country,
-      "DateTime": DateTime.now(),
+      // "DateTime": DateTime.now(),
       "SelectedAddress": selectedAddress,
     };
   }
@@ -68,7 +67,7 @@ class AddressModel {
       state: data['State'] as String,
       postalCode: data['PostalCode'] as String,
       country: data['Country'] as String,
-      dateTime: (data['DateTime'] as Timestamp).toDate(),
+      // dateTime: (data['DateTime'] as Timestamp).toDate(),
       selectedAddress: data['SelectedAddress'] as bool,
     );
   }
@@ -86,7 +85,7 @@ class AddressModel {
       postalCode: data["PostalCode"] ?? "",
       country: data["Country"] ?? "",
       selectedAddress: data["SelectedAddress"] ?? "",
-      dateTime: data["DateTime"] ?? "",
+      // dateTime: data["DateTime"] ?? "",
     );
   }
 

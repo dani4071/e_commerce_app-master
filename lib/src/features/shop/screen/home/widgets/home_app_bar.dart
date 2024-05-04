@@ -49,7 +49,7 @@ class homeAppBar extends StatelessWidget {
         ],
       ),
       actions: [
-        if (showIcon)
+        // if (showIcon)
           danCounterIcon(
             texttheme: texttheme,
             onpressed: () => Get.to(const cartScreen()),

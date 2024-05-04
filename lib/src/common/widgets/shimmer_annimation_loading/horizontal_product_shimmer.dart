@@ -2,7 +2,6 @@ import 'package:e_commerce_app/src/common/widgets/shimmer_annimation_loading/shi
 import 'package:e_commerce_app/src/utils/contants/sizes.dart';
 import 'package:flutter/material.dart';
 
-import '../layouts/grid_layout.dart';
 
 class danHorizontalProductShimmer extends StatelessWidget {
   const danHorizontalProductShimmer({super.key, this.itemCount = 4});

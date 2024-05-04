@@ -6,8 +6,15 @@ class danImage {
   static const String lighttAppLogo = "assets/logos/lightLogo.png";
 
 
+
   static const String facebook = "assets/logos/facebookLogo.png";
   static const String google = "assets/logos/googleLogo.png";
+  static const String payPalLogo = "assets/logos/paypal.png";
+  static const String masterCardLogo = "assets/logos/masterCard.png";
+  static const String payStackLogo = "assets/logos/paystack.png";
+  static const String visaLogo = "assets/logos/visa.png";
+  static const String googlePayLogo = "assets/logos/googlepay.png";
+  static const String applePayLogo = "assets/logos/applepay.png";
 
 
 

@@ -7,8 +7,11 @@ import 'package:iconsax/iconsax.dart';
 
 class danProductQualityWithAddRemove extends StatelessWidget {
   const danProductQualityWithAddRemove({
-    super.key,
+    super.key, required this.quantity, this.add, this.minus,
   });
+
+  final int quantity;
+  final VoidCallback? add, minus;
 
 
   @override
@@ -29,10 +32,11 @@ class danProductQualityWithAddRemove extends StatelessWidget {
           size: danSizes.md,
           color: isDark ? danColors.white : danColors.black,
           backGroundColor: isDark ? danColors.darkerGrey : danColors.darkGrey,
+          onPressed: minus,
         ),
 
         const SizedBox(width: danSizes.spacebtwItems),
-        Text("2", style: texttheme.bodyMedium,),
+        Text(quantity.toString(), style: texttheme.bodyMedium,),
         const SizedBox(width: danSizes.spacebtwItems),
 
         danCircularIcon(
@@ -42,6 +46,7 @@ class danProductQualityWithAddRemove extends StatelessWidget {
           size: danSizes.md,
           color: isDark ? danColors.white : danColors.black,
           backGroundColor: isDark ? danColors.darkerGrey : danColors.primary,
+          onPressed: add,
         ),
       ],
     );

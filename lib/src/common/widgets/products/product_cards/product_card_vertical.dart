@@ -12,6 +12,7 @@ import 'package:e_commerce_app/src/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../features/shop/model/product_model.dart';
+import '../../../../features/shop/screen/home/widgets/add_to_cart_button.dart';
 import '../../images/dan_rounded_images.dart';
 import '../../texts/product_title_text.dart';
 
@@ -142,20 +143,8 @@ class danProductCardVertical extends StatelessWidget {
                         ),
                       ),
 
-                      Container(
-                        decoration: const BoxDecoration(
-                          color: danColors.black,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(danSizes.cardRadiusMd),
-                            bottomRight: Radius.circular(danSizes.productImageRadius),
-                          ),
-                        ),
-                        child: const SizedBox(
-                          width: danSizes.iconlg * 1.2,
-                          height: danSizes.iconlg * 1.2,
-                          child: Center(child: Icon(Icons.add, color: Colors.white,)),
-                        ),
-                      ),
+                      // add to cart button
+                      productCartAddToCartButton(product: product,),
                     ],
                   ),
                 ],
@@ -171,4 +160,5 @@ class danProductCardVertical extends StatelessWidget {
     );
   }
 }
+
 

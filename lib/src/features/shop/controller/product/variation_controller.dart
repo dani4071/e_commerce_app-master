@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/src/features/shop/controller/product/cart_controller.dart';
 import 'package:e_commerce_app/src/features/shop/controller/product/images_controller.dart';
 import 'package:e_commerce_app/src/features/shop/model/product_model.dart';
 import 'package:e_commerce_app/src/features/shop/model/product_variation_model.dart';
@@ -28,15 +29,27 @@ class VariationController extends GetxController {
             variation.attributeValues, selectedAttributes),
         orElse: () => ProductVariationModel.empty());
 
-    // show the selected variation image as amain image
+    // show the selected variation image as a main image
     if (selectedVariation.image.isNotEmpty) {
       ImageController.instance.selectedProductImage.value =
           selectedVariation.image;
     }
 
+    // show selected variation quantity already in the cart.
+    if( selectedVariation.id.isNotEmpty) {
+      final cartController = CartController.instance;
+      cartController.productQuantityInCart.value = cartController.getvariationQuantityInCart(product.id, selectedVariation.id);
+    }
+
     // Assign selected variation
     this.selectedVariation.value = selectedVariation;
+
+    //update selected product variation status
+    getProductVariationStockStatus();
   }
+
+
+
 
   /// -- check if selected attributes matches any variation attributes
   bool _isSameAttributeValues(Map<String, dynamic> variationAttributes,

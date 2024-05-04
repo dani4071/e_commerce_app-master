@@ -1,10 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:e_commerce_app/src/common/widgets/images/dan_circular_image.dart';
 import 'package:e_commerce_app/src/utils/contants/colors.dart';
-import 'package:e_commerce_app/src/utils/contants/image_strings.dart';
 import 'package:e_commerce_app/src/utils/contants/sizes.dart';
-import 'package:e_commerce_app/src/utils/helpers/helper_functions.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class danVerticalImageText extends StatelessWidget {

@@ -40,17 +40,49 @@ class danFullScreenLoader {
   static customLoading(){
     showDialog(context: Get.overlayContext!, builder: (context){
       // return const Center(child: CircularProgressIndicator(),);
-      return Scaffold(
-        backgroundColor: danHelperFunction.isDarkMode(context) ? danColors.black : danColors.white,
-        body: const Center(
+      return const Scaffold(
+        //backgroundColor: danHelperFunction.isDarkMode(context) ? danColors.black : danColors.white,
+        backgroundColor: Colors.transparent,
+        body: Center(
           child: Image(image: AssetImage(danImage.loadingImage2,)),
         ),
       );
     }) ;
   }
 
+
+
+
+  /// this s a custom circular progress indicator
+  static customCircleProgressIndicator() {
+    Get.defaultDialog(
+      title: "",
+      onWillPop: () async {return false;},
+      barrierDismissible: false,
+      backgroundColor: Colors.transparent,
+      content: const CircularProgressIndicator(),
+    );
+  }
+
+
   static stopLoading() {
     Navigator.of(Get.overlayContext!).pop();
   }
 }
 
+/// this is that pop to ask are you sure you wan to cancel
+// void removeFromCartDialog(int index)
+// {
+//   Get.defaultDialog(
+//     title: "Remove Product",
+//     middleText: 'Are you sure you want to remove this product',
+//     onConfirm: () {
+//       // remove the item from the cart
+//       cartItems.removeAt(index);
+//       updateCart();
+//       danLoaders.customToast(message: 'Product removed from the cart.');
+//       Get.back();
+//     },
+//     onCancel: () => () => Get.back(),
+//   );
+// }

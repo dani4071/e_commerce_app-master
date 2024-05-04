@@ -2,7 +2,6 @@ import 'package:e_commerce_app/src/common/widgets/appbar_tabbar/appbar.dart';
 import 'package:e_commerce_app/src/common/widgets/images/dan_rounded_images.dart';
 import 'package:e_commerce_app/src/common/widgets/products/product_cards/product_card_horizontal.dart';
 import 'package:e_commerce_app/src/common/widgets/section_heading/section_heading.dart';
-import 'package:e_commerce_app/src/common/widgets/shimmer_annimation_loading/vertical_product_shimmer.dart';
 import 'package:e_commerce_app/src/features/shop/controller/category_controller.dart';
 import 'package:e_commerce_app/src/features/shop/model/category_model.dart';
 import 'package:e_commerce_app/src/features/shop/screen/all_products/all_product_screen.dart';
@@ -69,7 +68,7 @@ class subCategoryScreen extends StatelessWidget {
                     return ListView.builder(
                       shrinkWrap: true,
                       itemCount: subCategories.length,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (_, index) {
                         final subCategory = subCategories[index];
 
