@@ -135,6 +135,7 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
+
   /// [GoogleAuthentication] - REGISTER
   Future<UserCredential> signInWithGoogle() async {
     try {
@@ -168,6 +169,7 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
+
   Future<void> sendPasswordResetEmail(String email) async {
     try {
       await _auth.sendPasswordResetEmail(email: email);
@@ -187,6 +189,7 @@ class AuthenticationRepository extends GetxController {
       throw "Something went wrong. please try again 5";
     }
   }
+
 
   /// [REAUTHENTICATE] - so we could delete. according to firebase you must reAuth before you could delete
   Future<void> reAuthenticatewithEmailandPassword(String email, String password) async {
@@ -215,6 +218,7 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
+
   /// [LOGOUTUSER] - Valid for any authentication
   Future<void> logoutUser() async {
     try {
@@ -237,6 +241,7 @@ class AuthenticationRepository extends GetxController {
       throw "Something went wrong. please try again 5";
     }
   }
+
 
   /// [DELETEUSER] - Remove user Auth and Firebase Account
   Future<void> deleteAccount() async {

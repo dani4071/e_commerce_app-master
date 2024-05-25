@@ -48,6 +48,8 @@ class UserController extends GetxController {
     }
   }
 
+
+
   /// save user record from any registration provider
   Future<void> saveUserRecord(UserCredential? userCredentials) async {
     try {
@@ -85,6 +87,8 @@ class UserController extends GetxController {
               "Something went wrong while saving your information. you can re save your data in your profile $e");
     }
   }
+
+
 
   /// Delete Account Warning
   void deleteAccountWarningPopup() {
@@ -137,6 +141,8 @@ class UserController extends GetxController {
     }
   }
 
+
+
   /// Upload Profile Image
   Future<void> reAuthenticateEmailandPassword() async {
     try {
@@ -165,6 +171,8 @@ class UserController extends GetxController {
     }
   }
 
+
+
   uploadUserProfilePicture() async {
     try {
       // could be ImageSource. camera too;
@@ -181,9 +189,6 @@ class UserController extends GetxController {
         user.value.profilePicture = imageUrl;
         user.refresh();
         danLoaders.successSnackBar(title: "Congratulations", message: "Your profile image has been uploaded");
-
-
-
       }
     } catch (e) {
       danLoaders.errorSnackBar(title: "oh Snap!!", message: "Something went Wrong: $e");
@@ -191,6 +196,7 @@ class UserController extends GetxController {
     finally {
       imageUploading.value = false;
     }
-
   }
+
+
 }

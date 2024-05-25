@@ -27,7 +27,8 @@ class productDetailsImageSlider extends StatelessWidget {
 
     return curvedEdgesWidget(
         child: Container(
-       color: isDark ? danColors.dark : danColors.white,
+       // color: isDark ? danColors.dark : danColors.white,
+          color: Colors.red,
       child: Stack(
         children: [
 

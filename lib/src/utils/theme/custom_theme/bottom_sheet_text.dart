@@ -21,7 +21,4 @@ class danBottomsheet {
     constraints: const BoxConstraints(minWidth: double.infinity),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
   );
-
-
-
 }

@@ -39,7 +39,6 @@ class popularCategories extends StatelessWidget {
               /// you can use dan vertical image text to archive the below
               itemBuilder: (context, index) {
                 final category = categoryController.popularCategories[index];
-
                 // return SizedBox(
                 //   width: 60,
                 //   height: 45,

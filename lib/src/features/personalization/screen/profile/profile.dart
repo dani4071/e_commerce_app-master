@@ -38,7 +38,7 @@ class profileScreen extends StatelessWidget {
                       final image = networkImage.isNotEmpty ? networkImage : danImage.google;
                       return controller.imageUploading.value
                           ? const danShimmerEffect(width: 80, height: 80, radius: 80,)
-                          : danCircularImage(image: image, height: 80, width: 80, isNetworkImage: networkImage.isNotEmpty,);
+                          : danCircularImage(image: image, height: 80, width: 80, isNetworkImage: networkImage.isNotEmpty);
                     }),
                     // SizedBox(height: danSizes.spacebtwItems,),
                     TextButton(

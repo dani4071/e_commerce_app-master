@@ -54,6 +54,7 @@ class UserRepository extends GetxController {
     }
   }
 
+
   /// Function to update user data in the firestore
   Future<void> updateUserDetails(UserModel updateUser) async {
     try {
@@ -84,6 +85,7 @@ class UserRepository extends GetxController {
       throw "Something went wrong. please try again 4:4:4";
     }
   }
+
 
   /// Function to remove user data from Firestore.
   Future<void> removeUserRecord(String userId) async {

@@ -1,5 +1,4 @@
 import 'package:e_commerce_app/src/utils/contants/image_strings.dart';
-
 import '../../features/shop/model/category_model.dart';
 
 class danDummyData {
